@@ -6,17 +6,21 @@ var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+
+module.exports = function(app){
+
+var friendsData = [];
 app.get("/api/friends", function (req, res) {
-  return res.json(friends);
+  return res.json(friendsData);
 });
 
 
 app.post("/api/friends", function(req, res) {
-  friends = [];
-  res.json(friends);
+  friendsData = [];
+  res.json(friendsData);
   console.log("Array cleared.");
 });
-
+}
 
 
 app.listen(PORT, function() {
