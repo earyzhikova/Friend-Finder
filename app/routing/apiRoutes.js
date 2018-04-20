@@ -1,30 +1,29 @@
 var express = require("express");
 var path = require("path");
-
-// Sets up the Express App
+var friendsData = require("../data/friends.js");
+// fstat.existsSync('../data/friends.js')
+// Set up the Express App
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+// JSON objects
+module.exports = function(app, express){
 
-module.exports = function(app){
+  
 
-var friendsData = [];
 app.get("/api/friends", function (req, res) {
   return res.json(friendsData);
 });
 
 
 app.post("/api/friends", function(req, res) {
-  friendsData = [];
-  res.json(friendsData);
+  console.log(req.body);
+  //save the data
+  //compare the data
+  //send comparison back to webpage as modal pop-up
   console.log("Array cleared.");
 });
 }
 
-
-app.listen(PORT, function() {
-// Log (server-side) when our server has started
-console.log("Server listening on: http://localhost:" + PORT);
-});
 
