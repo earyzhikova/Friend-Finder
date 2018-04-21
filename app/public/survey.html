@@ -225,12 +225,47 @@
 
         console.log(data);
       });
-      console.log(newFriend);
+
+      var friendResponses = newFriend.score;
+  console.log('friendResponses =' + friendResponses);
+
+//   var matchName = "";
+//   var matchImage = "";
+//   var diffTotal = null;
+
+//   for(var i = 0; i <friendResponses.length; i++){
+//     console.log("friend = " + JSONstringify(friendResponses[i]));
+
+//     var diff = 0;
+// for(var j = 0; j < friendResponses.length; i++){
+//   diff += Math.abs(friendResponses[i].score[j] - friendResponses[j]);
+
+
+//   console.log('diff = ' + diff);
+
+//   if(diff < diffTotal) {
+//     console.log("Match found = " + diff);
+//     console.log("Name = " + friendResponses[i].friendName);
+//     console.log("Image = "+ friendResponses[i].friendImage);
+
+//     diffTotal = diff;
+//     matchName = friendResponses[i].friendName;
+//     matchImage = friendResponses[i].friendImage;
+//   }
+// }
+// friendResponses.push(newFriend);
+
+// res.json({ matchName: matchName, matchImage: matchImage });
+// }
+  
+
+      // console.log(newFriend);
       return false;
+
     });
+  
   </script>
-  <!-- jquery
-  get,post -->
+ 
 </body>
 
 </html>

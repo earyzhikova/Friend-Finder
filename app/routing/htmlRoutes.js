@@ -16,6 +16,7 @@ module.exports = function(app, express){
     res.sendFile(path.join(__dirname, "../public/survey.html"));
     console.log("get request for survey.html fired");
   });
+  
   app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
     console.log("get request for home.html fired");
