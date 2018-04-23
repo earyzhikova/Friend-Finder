@@ -156,10 +156,10 @@
     </select>
     <br>
     <!-- Button trigger modal -->
-<button type="button" id = "submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" id="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Submit
 </button>
-<br>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -201,7 +201,8 @@
 
   <script type="text/javascript">
     var newFriend = null;
-    $("#submit").on("click", function () {
+    $("#submit").on("click", function (event) {
+      event.preventDefault;
       console.log("submit button clicked")
       newFriend = {
         friendName: $("#friendName").val().trim(),
