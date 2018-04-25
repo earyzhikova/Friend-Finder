@@ -20,16 +20,25 @@ module.exports = function (app, express) {
   // add new friend entries
   app.post("/api/friends", function (req, res) {
     console.log("post api route for friends fired");
-
-    var newFriend = req.body;
-    userMatch(newFriend, friendsData);
-    // newFriend = newFriend.name.replace(/\s+/g, "").toLowerCase();
-
-    console.log(newFriend);
-
-    friendsData.push(newFriend);
-
-    res.json(newFriend);
+    newFriend = req.body;
+    //check if there is the first friend
+    if(friendsData.length == 0){
+      friendsData.push(newFriend);
+      res.jsonp({"message": "You are the first user!"});
+    }
+    else { // else previous friend exists, compare to find close answers
+      res.jsonp({"message": "You are the first user!"});
+      // var newFriend = req.body;
+      // userMatch(newFriend, friendsData);
+      // // newFriend = newFriend.name.replace(/\s+/g, "").toLowerCase();
+  
+      // console.log(newFriend);
+  
+      // friendsData.push(newFriend);
+  
+      // res.jsonp(newFriend);
+    }
+    
 
 
   });
@@ -40,13 +49,15 @@ module.exports = function (app, express) {
   function userMatch(newFriend, friendsData) {
     // set scores
 
-    var newUserScores = newFriend;
-    var userScores = friendsData;
-
+   var userScores = newFriend.score;
+  //  console.log(newFriend, userScores);
+  
 
     var bestMatch;
     var lowestDiff = Infinity;
-    console.log(userScores);
+    // console.log(userScores);
+
+
 
           for (var i = 0; i < userScores.length; i++) {
             console.log(`Loop through outer ${i}`);
@@ -54,18 +65,21 @@ module.exports = function (app, express) {
 
             var total = 0;
 
-            for (var j = 0; j < newUserScores.length; j++ ) {
+            for (var j = 0; j < userScores.length; j++ ) {
               console.log(`Loop through inner of ${j}`);
 
-              var diff = Math.abs(newUserScores[j] - userScores[i][j]);
+            console.log(friendsData);
+            
+              var diff = Math.abs(userScores[j] - friendsData[i][j]);
               total += diff;
             }
 
         if (total < lowestDiff) {
-          console.log(`userScores found at index ${i} is the current best with a diff of ${total}`);
-
           bestMatch = userScores[i];
           lowestDiff = total;
+          console.log(`userScores found at index ${i} is the current best with a diff of ${total}`);
+
+          
         }
       }
       console.log("Best Match: " + bestMatch);
