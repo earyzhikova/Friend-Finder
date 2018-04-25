@@ -27,16 +27,16 @@ module.exports = function (app, express) {
       res.jsonp({"message": "You are the first user!"});
     }
     else { // else previous friend exists, compare to find close answers
-      res.jsonp({"message": "You are the first user!"});
-      // var newFriend = req.body;
-      // userMatch(newFriend, friendsData);
-      // // newFriend = newFriend.name.replace(/\s+/g, "").toLowerCase();
+      var newFriend = req.body;
+      var bestMatch = userMatch(newFriend, friendsData);
+      // newFriend = newFriend.name.replace(/\s+/g, "").toLowerCase();
   
       // console.log(newFriend);
   
-      // friendsData.push(newFriend);
+      friendsData.push(newFriend);
+      console.log(friendsData[bestMatch]);
   
-      // res.jsonp(newFriend);
+      res.jsonp({"message": "<p>Name:" + "<br>" + "Photo: <a src='" + "'" + "</p>"});
     }
     
 
@@ -52,36 +52,27 @@ module.exports = function (app, express) {
    var userScores = newFriend.score;
   //  console.log(newFriend, userScores);
   
-
     var bestMatch;
     var lowestDiff = Infinity;
     // console.log(userScores);
-
-
-
           for (var i = 0; i < userScores.length; i++) {
             console.log(`Loop through outer ${i}`);
-
-
             var total = 0;
-
             for (var j = 0; j < userScores.length; j++ ) {
               console.log(`Loop through inner of ${j}`);
 
             console.log(friendsData);
-            
               var diff = Math.abs(userScores[j] - friendsData[i][j]);
               total += diff;
             }
 
-        if (total < lowestDiff) {
-          bestMatch = userScores[i];
-          lowestDiff = total;
-          console.log(`userScores found at index ${i} is the current best with a diff of ${total}`);
-
-          
-        }
-      }
+            if (total < lowestDiff) {
+              bestMatch = userScores[i];
+              lowestDiff = total;
+              console.log(`userScores found at index ${i} is the current best with a diff of ${total}`);
+            }
+          }
       console.log("Best Match: " + bestMatch);
+      return bestMatch;
   };
 };
