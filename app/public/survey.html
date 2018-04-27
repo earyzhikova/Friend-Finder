@@ -51,7 +51,7 @@
     <label for="question2">Question 2</label>
     <p>You cannot stand a messy place.</p>
     <select required id="Q2" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -63,7 +63,7 @@
     <label for="question3">Question 3</label>
     <p>You always do something out of curiosity.</p>
     <select required id="Q3" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -75,7 +75,7 @@
     <label for="question4">Question 4</label>
     <p>You are highly motivated.</p>
     <select required id="Q4" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -87,7 +87,7 @@
     <label for="question5">Question 5</label>
     <p>You are really into travelling.</p>
     <select required id="Q5" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -99,7 +99,7 @@
     <label for="question6">Question 6</label>
     <p>You are very practical.</p>
     <select required id="Q6" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -111,7 +111,7 @@
     <label for="question7">Question 7</label>
     <p>You cannot relax under presure.</p>
     <select required id="Q7" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -123,7 +123,7 @@
     <label for="question8">Question 8</label>
     <p>You do not initiate conversations.</p>
     <select required id="Q8" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -135,7 +135,7 @@
     <label for="question9">Question 9</label>
     <p>Everything needs to be done perfectly.</p>
     <select required id="Q9" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -147,7 +147,7 @@
     <label for="question10">Question 10</label>
     <p>You find it difficult to introduce yourself to other people.</p>
     <select required id="Q10" class="form-control">
-      <option value="option">Select an Option</option>
+      <option value="">Select an Option</option>
       <option value="1">1 (Strongly Agree)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -156,7 +156,7 @@
     </select>
     <br>
 
-    <button type="button" id="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="submit" id="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
       Submit
     </button>
 
@@ -171,7 +171,8 @@
             </button>
           </div>
           <div class="modal-body">
-            ...
+          <!-- <h2 id="matchName"></h2> -->
+          <!-- <img id="matchImg" src = "" alt=""> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -198,7 +199,7 @@
   $("#submit").on("click", function (event) {
     event.preventDefault;
     console.log("submit button clicked")
-    newFriend = {
+    var newFriend = {
       friendName: $("#friendName").val().trim(),
       friendPhoto: $("#friendPhoto").val().trim(),
       score: [
@@ -225,8 +226,6 @@
       console.log(data);
       
     });
-    $(".modal-body").html("<p>Name:</p>" + "<p>Photo:</p>");
-    $('#exampleModal').modal("show");
 
 
 

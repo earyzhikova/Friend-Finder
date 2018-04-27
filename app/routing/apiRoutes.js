@@ -8,7 +8,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // JSON objects
-module.exports = function (app, express) {
+module.exports = function (app) {
 
 
   // list of friends entriies
@@ -28,15 +28,15 @@ module.exports = function (app, express) {
     }
     else { // else previous friend exists, compare to find close answers
       var newFriend = req.body;
-      var bestMatch = userMatch(newFriend, friendsData);
+      var bestMatch = userMatch(newFriend);
       // newFriend = newFriend.name.replace(/\s+/g, "").toLowerCase();
   
       // console.log(newFriend);
   
       friendsData.push(newFriend);
-      console.log(friendsData[bestMatch]);
+      // console.log(bestMatch);
   
-      res.jsonp({"message": "<p>Name:" + "<br>" + "Photo: <a src='" + "'" + "</p>"});
+      res.jsonp({"message": "<p>Name: " + bestMatch.friendName + "<br>" + "Photo: <img src='" + bestMatch.friendPhoto + "' style='width:20%;height:20%' >" + "</p>"});
     }
     
 
@@ -46,30 +46,34 @@ module.exports = function (app, express) {
   //compare the data
   //send comparison back to webpage as modal pop-up
   //  display survey results
-  function userMatch(newFriend, friendsData) {
+  function userMatch(newFriend) {
     // set scores
 
-   var userScores = newFriend.score;
+   var newFriendScore = newFriend.score;
   //  console.log(newFriend, userScores);
   
     var bestMatch;
-    var lowestDiff = Infinity;
-    // console.log(userScores);
-          for (var i = 0; i < userScores.length; i++) {
-            console.log(`Loop through outer ${i}`);
-            var total = 0;
-            for (var j = 0; j < userScores.length; j++ ) {
-              console.log(`Loop through inner of ${j}`);
+    var lowestDifferenceSoFar = Infinity;
+    var totalDifference;
+          //all the friends - aka - for each friend
+          for (var i = 0; i < friendsData.length; i++) {
 
-            console.log(friendsData);
-              var diff = Math.abs(userScores[j] - friendsData[i][j]);
-              total += diff;
+            currentFriend = friendsData[i];
+            console.log(`currentFriend.name`);
+            var totalDifference = 0;
+            //for each question (10)
+            for (var j = 0; j < currentFriend.score.length; j++ ) {
+              var currentFriendsScore = currentFriend.score[j];
+              var currentNewFriendScore = newFriendScore[j];
+
+              totalDifference += Math.abs(parseInt(currentNewFriendScore) - parseInt(currentFriendsScore));
+
             }
 
-            if (total < lowestDiff) {
-              bestMatch = userScores[i];
-              lowestDiff = total;
-              console.log(`userScores found at index ${i} is the current best with a diff of ${total}`);
+            if (totalDifference < lowestDifferenceSoFar) {
+              bestMatch = friendsData[i];
+              lowestDifferenceSoFar = totalDifference;
+              // console.log(`userScores found at index ${i} is the current best with a diff of ${total}`);
             }
           }
       console.log("Best Match: " + bestMatch);
