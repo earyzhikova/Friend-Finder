@@ -1,11 +1,7 @@
-var express = require("express");
+
 var path = require("path");
 var friendsData = require("../data/friends.js");
 
-// Set up the Express App
-// =============================================================
-var app = express();
-var PORT = process.env.PORT || 3000;
 
 // JSON objects
 module.exports = function (app) {
@@ -24,7 +20,7 @@ module.exports = function (app) {
     //check if there is the first friend
     if(friendsData.length == 0){
       friendsData.push(newFriend);
-      res.jsonp({"message": "You are the first user!"});
+      res.json({"message": "You are the first user!"});
     }
     else { // else previous friend exists, compare to find close answers
       var newFriend = req.body;
@@ -36,7 +32,7 @@ module.exports = function (app) {
       friendsData.push(newFriend);
       // console.log(bestMatch);
   
-      res.jsonp({"message": "<p>Name: " + bestMatch.friendName + "<br>" + "Photo: <img src='" + bestMatch.friendPhoto + "' style='width:20%;height:20%' >" + "</p>"});
+      res.json({"message": "<p>Name: " + bestMatch.friendName + "<br>" + "Photo: <img src='" + bestMatch.friendPhoto + "' style='width:20%;height:20%' >" + "</p>"});
     }
     
 
